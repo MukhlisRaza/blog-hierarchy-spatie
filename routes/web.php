@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register_blogger', [App\Http\Controllers\BloggerController::class, 'blogger'])->middleware('role:Admin');
+Route::post('/blogger', [App\Http\Controllers\BloggerController::class, 'registerBlogger'])->name('register-blogger');
+Route::get('/register_moderator', [App\Http\Controllers\BloggerController::class, 'moderator'])->middleware('role:Blogger');
+Route::post('/register-moderator', [App\Http\Controllers\BloggerController::class, 'registerModerator'])->name('register-moderator');
